@@ -1,0 +1,36 @@
+<view class="page-container">
+
+  <view class="canvas-container">
+    <canvas 
+      type="2d"
+      id="mainCanvas"
+      class="drawing-canvas visible"
+      bindtap="onCanvasClick"
+      style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;">
+    </canvas>
+  </view>
+
+  <view class="upload-area">
+    <button bindtap="chooseImage" wx:if="{{!hasImage}}">上传线稿</button>
+  </view>
+  <!-- 底部工具栏 -->
+  <!-- 撤销按钮 -->
+  <button bindtap="undoFill" class="undo-button">撤销</button>
+  <view class="toolbar" >
+  
+    <!-- 预设颜色 -->
+    <scroll-view scroll-x class="color-scroll">
+    
+      <view class="color-list">
+        <view 
+          wx:for="{{basicColors}}" 
+          wx:key="index"
+          class="color-block {{currentColor === item ? 'active' : ''}}"
+          style="background-color: {{item}}"
+          bindtap="selectColor"
+          data-color="{{item}}">
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
