@@ -1,4 +1,4 @@
-const API_KEY = 'sk-16b4d175c9eb4c64b9088ec45f9f515d'; // 请在这里填入你的DeepSeek API Key
+const API_KEY = 'xxx'; // 请在这里填入你的DeepSeek API Key
 
 // DeepSeek API配置 - 修正URL和模型名称
 const API_URL = 'https://api.deepseek.com/v1/chat/completions';

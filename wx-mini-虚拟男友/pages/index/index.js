@@ -24,7 +24,7 @@ Page({
 
   getAccessToken : async function ()  {
     const { baiduApiKey, baiduSecretKey } = getApp().globalData
-    const url = `https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=MlQxWZCJrqOL9dayuqM3D219&client_secret=VgDJFh0pwJsUcsRhQ0RQ2yY4VrmUn0la`
+    const url = `https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=xxx&client_secret=xxx`
     
     try {
       wx.request({ url,method:'POST',
