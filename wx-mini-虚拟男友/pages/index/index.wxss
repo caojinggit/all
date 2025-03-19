@@ -1,0 +1,503 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  font-family: 'Microsoft YaHei', sans-serif;
+  overflow: hidden; /* 防止页面滚动 */
+}
+
+.main-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #e6f7ff, #f5f5ff);
+  overflow: hidden; /* 防止内容滚动 */
+}
+
+.container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.boyfriend-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 80px;
+  position: relative; /* 添加相对定位 */
+}
+
+.boyfriend-3d-container {
+  position: relative;
+  perspective: 1000px;
+  width: 240px; /* 添加固定宽度 */
+  height: 240px; /* 添加固定高度 */
+}
+
+.boyfriend-image {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 0 20px rgba(142, 84, 233, 0.3);
+  border: 4px solid white;
+  background-color: white;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  z-index: 3; /* 提高图片层级 */
+}
+
+.boyfriend-image.animate {
+  animation: pulse 0.8s ease-in-out;
+}
+
+.dialogue-bubble {
+  width: 500rpx; /* 明确宽度 */
+  box-sizing: border-box; /* 包含padding */
+  display:block;
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 15px 20px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5; /* 添加行高 */
+}
+
+
+.history-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.98);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.history-panel.show {
+  transform: translateY(0);
+}
+
+.history-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 15px;
+}
+
+.history-title text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.history-close {
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.history-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.history-item {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-item.user {
+  align-items: flex-end;
+}
+
+.history-item.assistant {
+  align-items: flex-start;
+}
+
+.history-bubble {
+  max-width: 80%;
+  padding: 12px 15px;
+  border-radius: 18px;
+  font-size: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  overflow-wrap: break-word; /* 使用overflow-wrap替代word-wrap */
+  white-space: normal; /* 使用normal替代pre-wrap */
+  word-break: break-word; /* 使用break-word替代break-all */
+  line-height: 1.5; /* 添加行高 */
+}
+
+.history-item.user .history-bubble {
+  background: linear-gradient(135deg, #4776E6, #8E54E9);
+  color: white;
+}
+
+.history-item.assistant .history-bubble {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #eee;
+}
+
+.history-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f3f3f3, #e6e6e6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.history-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  border: 2px solid #8E54E9;
+  position: relative;
+}
+
+.history-icon:before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  background-color: #8E54E9;
+  top: 4px;
+  left: 4px;
+  box-shadow: 0 4px 0 0 #8E54E9, 0 8px 0 0 #8E54E9;
+}
+
+.input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.98);
+  padding: 12px 15px;
+  box-sizing: border-box;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.input-box {
+  width: 60%;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 15px;
+  background-color: #f0f7ff;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+.input-box:focus {
+  background-color: #ffffff;
+  box-shadow: inset 0 2px 5px rgba(66, 165, 245, 0.1);
+  outline: none;
+}
+
+.send-button {
+  margin-left: 8px;
+  margin-right: 0px;
+  padding: 8px 15px;
+  background: linear-gradient(135deg, #4776E6, #8E54E9);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 3px 8px rgba(142, 84, 233, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  max-width: 80px;
+}
+
+.send-button:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 0 2px 5px rgba(142, 84, 233, 0.2);
+  background: linear-gradient(135deg, #3d68d8, #7c46d6);
+}
+
+.shadow {
+  position: absolute;
+  width: 220px;
+  height: 30px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  animation: shadow-pulse 3s ease-in-out infinite;
+}
+
+/* 动画效果 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shadow-pulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.8);
+    opacity: 0.2;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loading-indicator {
+  position: relative;
+  background-color: #f0f0f0;
+  border-radius: 18px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  width: 60px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.5s;
+}
+
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  margin: 0 3px;
+  border-radius: 50%;
+  background-color: #8E54E9;
+  animation: dotPulse 1.5s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.api-status {
+  position: absolute;
+  top: -35px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.api-status.connected .status-dot {
+  background-color: #4CD964;
+  box-shadow: 0 0 5px #4CD964;
+}
+
+.api-status.disconnected .status-dot {
+  background-color: #FF3B30;
+  box-shadow: 0 0 5px #FF3B30;
+}
+
+.api-status.connected {
+  color: #4CD964;
+}
+
+.api-status.disconnected {
+  color: #FF3B30;
+}
+
+/* 光环效果 */
+.halo-effect {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(142, 84, 233, 0.2), transparent 70%);
+  animation: pulse 2s ease-in-out infinite;
+  z-index: 1; /* 调整光环层级 */
+  top: 50%; /* 居中定位 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 浮动爱心容器 */
+.hearts-container {
+  position: absolute;
+  width: 280px; /* 扩大容器范围 */
+  height: 280px;
+  z-index: 1; /* 调整爱心容器层级 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 爱心样式 */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 192, 203, 0.8);
+  transform: rotate(45deg);
+  animation: floatHeart 3s infinite;
+}
+
+.heart:before,
+.heart:after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: inherit;
+}
+
+.heart:before {
+  left: -10px;
+}
+
+.heart:after {
+  top: -10px;
+}
+
+/* 为每个爱心设置不同的位置和动画延迟 */
+.heart1 { left: 10%; top: 10%; animation-delay: 0s; }
+.heart2 { left: 0%; top: 30%; animation-delay: 0.5s; }
+.heart3 { left: 00%; top: 80%; animation-delay: 1s; }
+.heart4 { left: 85%; top: 15%; animation-delay: 1.5s; }
+.heart5 { left: 95%; top: 30%; animation-delay: 2s; }
+.heart6 { left: 85%; top: 80%; animation-delay: 2.5s; }
+
+/* 粒子效果 */
+.particles-container {
+  position: absolute;
+  width: 280px; /* 扩大容器范围 */
+  height: 280px;
+  z-index: 1; /* 调整粒子容器层级 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #fff, rgba(142, 84, 233, 0.6));
+  border-radius: 50%;
+  animation: sparkle 2s infinite;
+}
+
+/* 为每个粒子设置不同的位置和动画延迟 */
+.p1 { left: 15%; top: 25%; animation-delay: 0s; }
+.p2 { left: 75%; top: 35%; animation-delay: 0.3s; }
+.p3 { left: 25%; top: 65%; animation-delay: 0.6s; }
+.p4 { left: 65%; top: 55%; animation-delay: 0.9s; }
+.p5 { left: 35%; top: 45%; animation-delay: 1.2s; }
+.p6 { left: 55%; top: 75%; animation-delay: 1.5s; }
+.p7 { left: 45%; top: 25%; animation-delay: 1.8s; }
+.p8 { left: 85%; top: 85%; animation-delay: 2.1s; }
+
+/* 动画关键帧 */
+@keyframes floatHeart {
+  0% { transform: rotate(45deg) translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: rotate(45deg) translateY(-20px) scale(1.1); opacity: 0.9; }
+  100% { transform: rotate(45deg) translateY(0) scale(1); opacity: 0.8; }
+}
+
+@keyframes sparkle {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 0.8; }
+}

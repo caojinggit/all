@@ -1,0 +1,68 @@
+<!--index.wxml-->
+<navigation-bar title="知心大暖男" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="main-container">
+  <view class="container">
+    <!-- 历史聊天记录 -->
+    <scroll-view class="history-panel {{showHistory ? 'show' : ''}}" scroll-y="true">
+      <view class="history-title">
+        <text>聊天记录</text>
+        <view class="history-close" bindtap="clearHistory">清空</view>
+        <view class="history-close" bindtap="toggleHistory">关闭</view>
+      </view>
+      <view class="history-list">
+        <block wx:for="{{chatHistory}}" wx:key="index">
+          <view class="history-item {{item.type}}">
+            <view class="history-bubble">{{item.content}}</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    
+    <view class="boyfriend-container">
+    
+      <!-- 添加光环效果 -->
+      <view class="halo-effect"></view>
+      
+      <view class="boyfriend-3d-container">
+        <!-- 添加浮动爱心元素 -->
+        <view class="hearts-container">
+          <view class="heart heart1"></view>
+          <view class="heart heart2"></view>
+          <view class="heart heart3"></view>
+          <view class="heart heart4"></view>
+          <view class="heart heart5"></view>
+          <view class="heart heart6"></view>
+        </view>
+        
+        <image class="boyfriend-image {{animating ? 'animate' : ''}}" src="/images/boyfriend.png" bindtap="animateBoyFriend" />
+        <view class="shadow"></view>
+        
+        <!-- 添加光晕粒子效果 -->
+        <view class="particles-container">
+          <view class="particle p1"></view>
+          <view class="particle p2"></view>
+          <view class="particle p3"></view>
+          <view class="particle p4"></view>
+          <view class="particle p5"></view>
+          <view class="particle p6"></view>
+          <view class="particle p7"></view>
+          <view class="particle p8"></view>
+        </view>
+      </view>
+      <view class="dialogue-bubble" wx:if="{{response}}">{{response}}</view>
+      <view class="loading-indicator" wx:if="{{isLoading}}">
+        <view class="loading-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+      </view>
+      
+    </view>
+    
+    <view class="input-container">
+      <input class="input-box" placeholder="说点什么..." bindinput="onInput" value="{{inputValue}}" confirm-type="send" bindconfirm="onSend" />
+      <button class="send-button" bindtap="onSend">发送</button>
+    </view>
+  </view>
+</view>
