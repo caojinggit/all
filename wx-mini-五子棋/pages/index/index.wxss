@@ -1,0 +1,239 @@
+/**pages/index/index.wxss**/
+
+/* 容器样式 */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  box-sizing: border-box;
+  background-color: #000;
+  overflow: hidden;
+}
+
+/* 背景Canvas */
+.background-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* 游戏信息区域 */
+.game-info {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  margin-bottom: 20rpx;
+  z-index: 1;
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  border-radius: 10rpx;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 15rpx rgba(0, 243, 255, 0.5);
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
+  padding: 10rpx;
+  border-radius: 5rpx;
+  transition: all 0.3s;
+}
+
+.player.active {
+  background-color: rgba(0, 243, 255, 0.2);
+  box-shadow: 0 0 10rpx rgba(0, 243, 255, 0.7);
+}
+
+.player .piece {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+  transform: translate(-50%, -50%);
+}
+
+.steps-info {
+  font-size: 28rpx;
+}
+
+/* 棋盘容器 */
+.board-container {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  margin: 20rpx;
+  overflow: hidden;
+  border-radius: 5rpx;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 20rpx rgba(0, 243, 255, 0.6);
+  transform-style: preserve-3d;
+}
+
+.board-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    #00f3ff,
+    #7d00ff,
+    #00f3ff,
+    #7d00ff
+  );
+  background-size: 400% 400%;
+  animation: cyber-border 3s linear infinite;
+  z-index: 0;
+  filter: blur(5px);
+  opacity: 0.8;
+}
+
+@keyframes cyber-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 棋盘样式 */
+.board {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 243, 255, 0.5);
+  margin: 20rpx;
+}
+
+/* 网格线 */
+.grid-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-line {
+  position: absolute;
+  background-color: rgba(0, 243, 255, 0.3);
+}
+
+.grid-line.horizontal {
+  height: 1px;
+}
+
+.grid-line.vertical {
+  width: 1px;
+}
+
+/* 棋子样式 */
+.piece {
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}
+
+.piece.black {
+  background: radial-gradient(circle at 30% 30%, #a359ff, #6a00ff 60%, #4b0082);
+  box-shadow: 0 0 10rpx rgba(106, 0, 255, 0.8);
+}
+
+.piece.white {
+  background: radial-gradient(circle at 30% 30%, #80ffff, #00ffe5 60%, #00b3a0);
+  box-shadow: 0 0 10rpx rgba(0, 255, 229, 0.8);
+}
+
+.piece.preview {
+  opacity: 0.5;
+  box-shadow: 0 0 15rpx rgba(0, 243, 255, 0.9);
+  transform: translate(-50%, -50%);
+}
+
+/* 胜利棋子样式 */
+.piece.win {
+  animation: rainbow-pulse 1.5s infinite;
+  box-shadow: 0 0 20rpx rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%);
+}
+
+
+
+/* 控制按钮区域 */
+.controls {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30rpx;
+  z-index: 1;
+}
+
+/* 胜利弹窗 */
+.victory-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  width: 80%;
+  padding: 40rpx;
+  border-radius: 10rpx;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 1px solid #00f3ff;
+  box-shadow: 0 0 30rpx rgba(0, 243, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 40rpx;
+  margin-bottom: 20rpx;
+}
+
+.modal-message {
+  font-size: 36rpx;
+  margin-bottom: 40rpx;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+/* 响应式调整 */

@@ -1,0 +1,80 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+
+  
+  <!-- 游戏信息 -->
+  <view class="game-info">
+    <view class="player-info">
+      <view class="player {{currentPlayer === 1 ? 'active' : ''}}">
+        <text class="cyber-text">黑棋{{currentPlayer === 1 ? '(当前)' : ''}}</text>
+      </view>
+      <view class="player {{currentPlayer === 2 ? 'active' : ''}}">
+        <text class="cyber-text">白棋{{currentPlayer === 2 ? '(当前)' : ''}}</text>
+      </view>
+    </view>
+    <view class="steps-info cyber-text">步数: {{steps}}</view>
+  </view>
+  
+  <!-- 棋盘 -->
+  <view class="board-container">
+    <view class="board" 
+          style="width: {{boardSize * gridSize}}px; height: {{boardSize * gridSize}}px;"
+          bindtap="onBoardTap"
+          bindtouchmove="onBoardMove"
+          bindtouchend="onBoardLeave">
+      <!-- 棋盘网格线 -->
+      <view class="grid-lines">
+        <block wx:for="{{boardSize}}" wx:key="*this" wx:for-index="i">
+          <!-- 水平线 -->
+          <view class="grid-line horizontal" 
+                style="top: {{i * gridSize}}px; width: {{boardSize * gridSize}}px;"></view>
+          <!-- 垂直线 -->
+          <view class="grid-line vertical" 
+                style="left: {{i * gridSize}}px; height: {{boardSize * gridSize}}px;"></view>
+        </block>
+      </view>
+      
+      <!-- 棋子 -->
+      <block wx:for="{{chessData}}" wx:key="index">
+        <view 
+          class="piece {{item.type === 1 ? 'black' : 'white'}}"
+          style="left: {{item.x * gridSize + gridSize/2}}px; top: {{item.y * gridSize + gridSize/2}}px">
+        </view>
+      </block>
+      <block wx:for="{{board}}" wx:for-item="row" wx:for-index="i" wx:key="i">
+        <block wx:for="{{row}}" wx:for-item="cell" wx:for-index="j" wx:key="j">
+          <view wx:if="{{cell !== 0}}" 
+                class="piece {{cell === 1 ? 'black' : 'white'}} {{isWinPosition(i, j) ? 'win' : ''}}"
+                style="top: {{i * gridSize + gridSize/2}}px; left: {{j * gridSize + gridSize/2}}px; width: {{pieceSize}}px; height: {{pieceSize}}px;"
+                animation="{{(animationPosition.i === i && animationPosition.j === j) ? animationData : ''}}"></view>
+        </block>
+      </block>
+      
+      <!-- 预览棋子 -->
+      <view wx:if="{{previewPosition}}"
+            class="piece preview {{currentPlayer === 1 ? 'black' : 'white'}}"
+            style="top: {{previewPosition.i * gridSize + gridSize/2}}px; left: {{previewPosition.j * gridSize + gridSize/2}}px; width: {{pieceSize}}px; height: {{pieceSize}}px;"></view>
+    </view>
+  </view>
+  
+  <!-- 控制按钮 -->
+  <view class="controls">
+    <button class="cyber-button" bindtap="restartGame">重新开始</button>
+  </view>
+  
+  <!-- 胜利弹窗 -->
+  <view class="victory-modal cyber-modal" wx:if="{{showVictoryModal}}">
+    <view class="modal-content">
+      <view class="modal-title cyber-text">游戏结束</view>
+      <view class="modal-message cyber-text">{{winner === 1 ? '黑棋' : '白棋'}}获胜!</view>
+      <view class="modal-buttons">
+        <button class="cyber-button" bindtap="restartGame">再来一局</button>
+        <button class="cyber-button" bindtap="closeVictoryModal">关闭</button>
+      </view>
+    </view>
+  </view>
+</view>
+.piece {
+  width: 60rpx!important;
+  height: 60rpx!important;
+}
