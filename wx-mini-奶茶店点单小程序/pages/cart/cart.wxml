@@ -1,0 +1,41 @@
+<!-- 购物车浮层 -->
+<view class="cart-container">
+  <view class="cart-icon" bindtap="toggleCart">
+    <image src="/images/cart-icon.svg" class="icon" />
+    <text class="badge" wx:if="{{totalCount > 0}}">{{totalCount}}</text>
+  </view>
+  
+  <view class="cart-content" wx:if="{{showCart}}" animation="{{animationData}}">
+    <view class="cart-header">
+      <text class="header-title">已选商品</text>
+      <text class="total-price">总计：￥{{totalPrice}}</text>
+    </view>
+    
+    <scroll-view scroll-y class="cart-list" wx:if="{{cartItems.length > 0}}">
+      <block wx:for="{{cartItems}}" wx:key="id">
+        <view class="cart-item">
+          <image src="{{item.image}}" class="item-image" mode="aspectFill" />
+          <view class="item-info">
+            <text class="item-name">{{item.name}}</text>
+            <text class="item-price">￥{{item.price}}</text>
+          </view>
+          <view class="item-actions">
+            <view class="btn-remove" bindtap="removeItem" data-id="{{item.id}}">-</view>
+            <text class="item-quantity">{{item.quantity}}</text>
+            <view class="btn-add" bindtap="addItem" data-id="{{item.id}}">+</view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+    
+    <view class="empty-cart" wx:else>
+      <image src="/images/cart.svg" class="empty-cart-icon" />
+      <text class="empty-cart-text">购物车还是空的哦~</text>
+    </view>
+    
+    <view class="checkout-bar">
+      <text class="checkout-total">合计: <text class="checkout-price">￥{{totalPrice}}</text></text>
+      <button class="checkout-btn" bindtap="placeOrder">立即下单</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+.container {
+  padding: 40rpx;
+  background: #FFF9F2;
+}
+
+.container text {
+  font-size: 32rpx;
+  color: #5C3A21;
+}

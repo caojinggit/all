@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/menu/menu"
+  ],
+  "window": {
+    "navigationBarTitleText": "奶茶小铺",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#D4A985"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

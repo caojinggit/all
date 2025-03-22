@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#F8E8D4"/>
+  <circle cx="100" cy="80" r="40" fill="#D4A985"/>
+  <rect x="60" y="130" width="80" height="40" rx="10" fill="#8B5A2B"/>
+  <path d="M80 100 Q 100 120 120 100" stroke="#5C3A21" stroke-width="3" fill="none"/>
+  <text x="100" y="155" font-family="Arial" font-size="14" text-anchor="middle" fill="#FFF">奶茶</text>
+</svg>

@@ -1,0 +1,73 @@
+<swiper indicator-dots autoplay interval="3000">
+  <block wx:for="{{banners}}">
+    <swiper-item>
+      <image src="{{item}}" mode="aspectFill" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 购物车浮层 -->
+<view class="cart-container">
+  <view class="cart-icon" bindtap="goToCart">
+    <image src="/images/cart-icon.svg" class="icon" />
+    <text class="badge" wx:if="{{totalCount > 0}}">{{totalCount}}</text>
+  </view>
+  
+  <view class="cart-content" wx:if="{{showCart}}" animation="{{animationData}}">
+    <view class="cart-header">
+      <text class="header-title">已选商品</text>
+      <text class="total-price">总计：￥{{totalPrice}}</text>
+    </view>
+    
+    <scroll-view scroll-y class="cart-list" wx:if="{{cartItems.length > 0}}">
+      <block wx:for="{{cartItems}}" wx:key="id">
+        <view class="cart-item">
+          <image src="{{item.image}}" class="item-image" mode="aspectFill" />
+          <view class="item-info">
+            <text class="item-name">{{item.name}}</text>
+            <text class="item-price">￥{{item.price}}</text>
+          </view>
+          <view class="item-actions">
+            <view class="btn-remove" bindtap="removeItem" data-id="{{item.id}}">-</view>
+            <text class="item-quantity">{{item.quantity}}</text>
+            <view class="btn-add" bindtap="addItem" data-id="{{item.id}}">+</view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+    
+    <view class="empty-cart" wx:else>
+      <image src="/images/cart.svg" class="empty-cart-icon" />
+      <text class="empty-cart-text">购物车还是空的哦~</text>
+    </view>
+    
+    <view class="checkout-bar">
+      <text class="checkout-total">合计: <text class="checkout-price">￥{{totalPrice}}</text></text>
+      <button class="checkout-btn" bindtap="placeOrder">立即下单</button>
+    </view>
+  </view>
+</view>
+
+  <!-- 分类导航 -->
+  <scroll-view scroll-x class="nav-scroll">
+    <view class="nav-item {{activeCategory === '经典奶茶' ? 'active' : ''}}" data-category="经典奶茶" bindtap="switchCategory">经典奶茶</view>
+    <view class="nav-item {{activeCategory === '果茶' ? 'active' : ''}}" data-category="果茶" bindtap="switchCategory">果茶</view>
+    <view class="nav-item {{activeCategory === '咖啡' ? 'active' : ''}}" data-category="咖啡" bindtap="switchCategory">咖啡</view>
+    <view class="nav-item {{activeCategory === '冰沙系列' ? 'active' : ''}}" data-category="冰沙系列" bindtap="switchCategory">冰沙系列</view>
+    <view class="nav-item {{activeCategory === '季节限定' ? 'active' : ''}}" data-category="季节限定" bindtap="switchCategory">季节限定</view>
+    <view class="nav-item {{activeCategory === '低卡专区' ? 'active' : ''}}" data-category="低卡专区" bindtap="switchCategory">低卡专区</view>
+  </scroll-view>
+
+  <!-- 商品列表 -->
+  <scroll-view scroll-y class="product-list">
+    <block wx:for="{{products}}" wx:key="id">
+      <view class="product-card" bindtap="showDetail" data-item="{{item}}">
+        <image src="{{item.image}}" class="product-image" />
+        <view class="product-info">
+          <text class="product-name">{{item.name}}</text>
+          <text class="product-price">￥{{item.price}}</text>
+          <button class="add-cart-btn" catchtap="addToCart" data-id="{{item.id}}">加入购物车</button>
+        </view>
+      </view>
+    </block>
+  </scroll-view>

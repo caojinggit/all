@@ -1,0 +1,44 @@
+<svg width="750" height="400" viewBox="0 0 750 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="750" height="400" fill="#FFF8E1" />
+  
+  <!-- 装饰元素 -->
+  <circle cx="100" cy="80" r="60" fill="#F9A825" opacity="0.2" />
+  <circle cx="650" cy="320" r="80" fill="#8D6E63" opacity="0.15" />
+  
+  <!-- 奶茶图形 -->
+  <g transform="translate(550, 200)">
+    <!-- 杯子 -->
+    <path d="M-40,120 L-60,-50 L60,-50 L40,120 Z" fill="#FFECB3" />
+    <path d="M-60,-50 L-70,-80 L70,-80 L60,-50 Z" fill="#D7CCC8" />
+    
+    <!-- 吸管 -->
+    <rect x="-5" y="-150" width="10" height="100" rx="5" fill="#EF5350" />
+    
+    <!-- 珍珠 -->
+    <circle cx="-20" cy="40" r="8" fill="#3E2723" opacity="0.8" />
+    <circle cx="0" cy="60" r="8" fill="#3E2723" opacity="0.8" />
+    <circle cx="20" cy="30" r="8" fill="#3E2723" opacity="0.8" />
+    <circle cx="-10" cy="80" r="8" fill="#3E2723" opacity="0.8" />
+    <circle cx="15" cy="90" r="8" fill="#3E2723" opacity="0.8" />
+  </g>
+  
+  <!-- 文字内容 -->
+  <g transform="translate(100, 150)">
+    <text font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#5D4037">
+      夏日特饮
+    </text>
+    <text y="70" font-family="Arial, sans-serif" font-size="32" fill="#795548">
+      买一送一
+    </text>
+    <text y="120" font-family="Arial, sans-serif" font-size="24" fill="#8D6E63">
+      限时优惠 6月1日-6月15日
+    </text>
+  </g>
+  
+  <!-- 装饰气泡 -->
+  <circle cx="200" cy="300" r="15" fill="#FFCC80" opacity="0.6" />
+  <circle cx="240" cy="330" r="10" fill="#FFCC80" opacity="0.6" />
+  <circle cx="180" cy="340" r="8" fill="#FFCC80" opacity="0.6" />
+  <circle cx="220" cy="280" r="12" fill="#FFCC80" opacity="0.6" />
+</svg>
