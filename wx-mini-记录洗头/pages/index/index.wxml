@@ -1,0 +1,45 @@
+<!-- index.wxml -->
+<view class="container">
+  <!-- 水彩云朵背景 -->
+  <view class="cloud-bg"></view>
+  
+  <!-- 月份导航 -->
+  <view class="month-nav">
+    <view class="nav-btn" bindtap="prevMonth">
+      <text class="iconfont icon-left">←</text>
+    </view>
+    <view class="month-title">{{year}}年{{month + 1}}月</view>
+    <view class="nav-btn" bindtap="nextMonth">
+      <text class="iconfont icon-right">→</text>
+    </view>
+  </view>
+  
+
+  
+  <!-- 日历主体 -->
+  <view class="calendar">
+    <!-- 星期标题行 -->
+    <view class="weekday-row">
+      <view class="weekday" wx:for="{{['日', '一', '二', '三', '四', '五', '六']}}" wx:key="index">{{item}}</view>
+    </view>
+    
+    <!-- 日期格子 -->
+    <view class="days-grid">
+      <view class="day-cell {{item.currentMonth ? '' : 'other-month'}} {{item.isToday ? 'today' : ''}} {{item.hasRecord ? 'has-record' : ''}}" 
+            wx:for="{{days}}" 
+            wx:key="index"
+            data-date="{{item.date}}"
+            bindtap="selectDate">
+        <view class="day-number">{{item.day}}</view>
+        <view class="paw-print" wx:if="{{item.hasRecord}}"></view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 记录按钮：长方形按钮 -->
+  <view class="record-btn-container">
+    <view class="record-btn" bindtap="quickRecord">
+      <text class="btn-text">一键记录</text>
+    </view>
+  </view>
+</view>

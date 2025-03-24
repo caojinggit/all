@@ -1,0 +1,161 @@
+<!-- statistics.wxml -->
+<view class="container">
+  <!-- 水彩云朵背景 -->
+  <view class="cloud-bg"></view>
+  
+  <!-- 页面标题 -->
+  <view class="page-title">
+    <view class="title-text">洗发统计</view>
+    <view class="title-decoration"></view>
+  </view>
+  
+  <!-- 数据概览卡片 -->
+  <view class="stats-card">
+    <view class="stats-item">
+      <view class="stats-value">{{weekWashCount}}</view>
+      <view class="stats-label">本周洗发</view>
+    </view>
+    <view class="stats-item">
+      <view class="stats-value">{{monthWashCount}}</view>
+      <view class="stats-label">本月洗发</view>
+    </view>
+    <view class="stats-item">
+      <view class="stats-value">{{averageInterval}}天</view>
+      <view class="stats-label">平均间隔</view>
+    </view>
+  </view>
+  
+  <!-- 定时提醒设置 -->
+  <view class="reminder-container">
+    <view class="section-title">定时提醒设置</view>
+    <view class="reminder-settings">
+      <!-- 开关按钮 -->
+      <view class="switch-item">
+        <view class="switch-label">开启提醒</view>
+        <switch checked="{{reminderEnabled}}" bindchange="toggleReminder" color="#FFB3C1"></switch>
+      </view>
+      
+      <!-- 提醒类型选择 -->
+      <view class="form-item {{!reminderEnabled ? 'disabled' : ''}}">
+        <view class="form-label">提醒方式</view>
+        <picker mode="selector" value="{{reminderTypeIndex}}" range="{{reminderTypes}}" bindchange="changeReminderType" disabled="{{!reminderEnabled}}">
+          <view class="picker-wrapper">
+            <view class="picker-value">{{reminderTypes[reminderTypeIndex]}}</view>
+            <view class="picker-icon">⏰</view>
+          </view>
+        </picker>
+      </view>
+      
+      <!-- 每天提醒时间选择 -->
+      <view class="form-item {{!reminderEnabled || reminderTypeIndex != 0 ? 'disabled' : ''}}" wx:if="{{reminderTypeIndex == 0}}">
+        <view class="form-label">提醒时间</view>
+        <picker mode="time" value="{{reminderTime}}" bindchange="changeReminderTime" disabled="{{!reminderEnabled}}">
+          <view class="picker-wrapper">
+            <view class="picker-value">{{reminderTime}}</view>
+            <view class="picker-icon">🕒</view>
+          </view>
+        </picker>
+      </view>
+      
+      <!-- 每周提醒日期选择 -->
+      <view class="form-item {{!reminderEnabled || reminderTypeIndex != 1 ? 'disabled' : ''}}" wx:if="{{reminderTypeIndex == 1}}">
+        <view class="form-label">提醒日期</view>
+        <picker mode="selector" value="{{reminderWeekdayIndex}}" range="{{weekdays}}" bindchange="changeReminderWeekday" disabled="{{!reminderEnabled}}">
+          <view class="picker-wrapper">
+            <view class="picker-value">{{weekdays[reminderWeekdayIndex]}}</view>
+            <view class="picker-icon">📅</view>
+          </view>
+        </picker>
+      </view>
+      
+      <!-- 每周提醒时间选择 -->
+      <view class="form-item {{!reminderEnabled || reminderTypeIndex != 1 ? 'disabled' : ''}}" wx:if="{{reminderTypeIndex == 1}}">
+        <view class="form-label">提醒时间</view>
+        <picker mode="time" value="{{reminderTime}}" bindchange="changeReminderTime" disabled="{{!reminderEnabled}}">
+          <view class="picker-wrapper">
+            <view class="picker-value">{{reminderTime}}</view>
+            <view class="picker-icon">🕒</view>
+          </view>
+        </picker>
+      </view>
+      
+      <!-- 每月提醒日期选择 -->
+      <view class="form-item {{!reminderEnabled || reminderTypeIndex != 2 ? 'disabled' : ''}}" wx:if="{{reminderTypeIndex == 2}}">
+        <view class="form-label">提醒日期</view>
+        <picker mode="selector" value="{{reminderMonthDayIndex}}" range="{{monthDays}}" bindchange="changeReminderMonthDay" disabled="{{!reminderEnabled}}">
+          <view class="picker-wrapper">
+            <view class="picker-value">{{monthDays[reminderMonthDayIndex]}}号</view>
+            <view class="picker-icon">📆</view>
+          </view>
+        </picker>
+      </view>
+      
+      <!-- 每月提醒时间选择 -->
+      <view class="form-item {{!reminderEnabled || reminderTypeIndex != 2 ? 'disabled' : ''}}" wx:if="{{reminderTypeIndex == 2}}">
+        <view class="form-label">提醒时间</view>
+        <picker mode="time" value="{{reminderTime}}" bindchange="changeReminderTime" disabled="{{!reminderEnabled}}">
+          <view class="picker-wrapper">
+            <view class="picker-value">{{reminderTime}}</view>
+            <view class="picker-icon">🕒</view>
+          </view>
+        </picker>
+      </view>
+      
+      <!-- 间隔天数选择 -->
+      <view class="form-item {{!reminderEnabled || reminderTypeIndex != 3 ? 'disabled' : ''}}" wx:if="{{reminderTypeIndex == 3}}">
+        <view class="form-label">间隔天数</view>
+        <picker mode="selector" value="{{reminderIntervalIndex}}" range="{{intervalDays}}" bindchange="changeReminderInterval" disabled="{{!reminderEnabled}}">
+          <view class="picker-wrapper">
+            <view class="picker-value">{{intervalDays[reminderIntervalIndex]}}天</view>
+            <view class="picker-icon">🔄</view>
+          </view>
+        </picker>
+      </view>
+      
+      <!-- 间隔天数提醒时间选择 -->
+      <view class="form-item {{!reminderEnabled || reminderTypeIndex != 3 ? 'disabled' : ''}}" wx:if="{{reminderTypeIndex == 3}}">
+        <view class="form-label">提醒时间</view>
+        <picker mode="time" value="{{reminderTime}}" bindchange="changeReminderTime" disabled="{{!reminderEnabled}}">
+          <view class="picker-wrapper">
+            <view class="picker-value">{{reminderTime}}</view>
+            <view class="picker-icon">🕒</view>
+          </view>
+        </picker>
+      </view>
+      
+      <!-- 显示下次提醒时间 -->
+      <view class="next-reminder {{!reminderEnabled ? 'disabled' : ''}}">
+        <view class="next-reminder-label">下次提醒时间</view>
+        <view class="next-reminder-value">{{nextReminderDate || '暂无提醒'}}</view>
+      </view>
+    </view>
+  </view>
+
+  
+  <!-- 成就系统：徽章墙 -->
+  <view class="achievements">
+    <view class="section-title">我的成就</view>
+    <view class="badges-wall">
+      <view class="badge {{item.unlocked ? 'unlocked' : 'locked'}}" 
+            wx:for="{{badges}}" 
+            wx:key="id"
+            bindtap="showBadgeDetail"
+            data-badge="{{item}}">
+        <view class="badge-icon">{{item.icon}}</view>
+        <view class="badge-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 贴纸收集册 -->
+  <view class="sticker-collection">
+    <view class="section-title">贴纸收集</view>
+    <view class="stickers-grid">
+      <view class="sticker {{item.collected ? 'collected' : 'uncollected'}}" 
+            wx:for="{{stickers}}" 
+            wx:key="id">
+        <view class="sticker-image">{{item.collected ? item.emoji : '?'}}</view>
+      </view>
+    </view>
+  </view>
+</view>

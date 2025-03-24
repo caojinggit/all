@@ -1,0 +1,408 @@
+/* record.wxss */
+
+/* 容器样式 */
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* 水彩云朵背景 */
+.cloud-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#FFF9FB 20%, transparent 20%),
+                    radial-gradient(#FFF9FB 20%, transparent 20%);
+  background-position: 0 0, 30px 30px;
+  background-size: 60px 60px;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* 页面标题 */
+.page-title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30rpx 0;
+  position: relative;
+}
+
+.title-text {
+  font-family: "rounded-mplus-1c-bold", sans-serif;
+  font-size: 40rpx;
+  color: #FF8BA7;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.title-decoration {
+  width: 120rpx;
+  height: 10rpx;
+  background-color: #FFB3C1;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.title-decoration:before, .title-decoration:after {
+  content: "";
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #FFB3C1;
+  border-radius: 50%;
+  top: -5rpx;
+}
+
+.title-decoration:before {
+  left: -25rpx;
+}
+
+.title-decoration:after {
+  right: -25rpx;
+}
+
+/* 记录表单 */
+.record-form {
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 10rpx rgba(255, 179, 193, 0.3);
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #FF8BA7;
+  margin-bottom: 15rpx;
+  font-weight: bold;
+}
+
+/* 日期选择器 */
+.picker-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFF;
+  border: 2rpx solid #FFD6E0;
+  border-radius: 15rpx;
+  padding: 15rpx 20rpx;
+  box-shadow: 0 2rpx 5rpx rgba(255, 179, 193, 0.2);
+}
+
+.picker-value {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.picker-icon {
+  font-size: 32rpx;
+}
+
+/* 时间选择器：旋转式表盘带猫咪指针 */
+.clock-picker {
+  position: relative;
+}
+
+.clock-face {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #FFF;
+  border: 2rpx solid #FFD6E0;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2rpx 5rpx rgba(255, 179, 193, 0.2);
+}
+
+.clock-center {
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #FF8BA7;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.clock-hand {
+  width: 2rpx;
+  height: 30rpx;
+  background-color: #FF8BA7;
+  position: absolute;
+  bottom: 50%;
+  transform-origin: bottom center;
+  transition: transform 0.3s ease;
+}
+
+.cat-pointer {
+  position: absolute;
+  top: -25rpx;
+  left: -12rpx;
+  font-size: 24rpx;
+  transform: rotate(180deg);
+}
+
+/* 头皮状态选择：Q版表情包选项 */
+.scalp-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.scalp-option {
+  width: 150rpx;
+  height: 150rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFF;
+  border: 2rpx solid #FFD6E0;
+  border-radius: 20rpx;
+  padding: 15rpx;
+  transition: all 0.3s ease;
+  box-shadow: 0 2rpx 5rpx rgba(255, 179, 193, 0.2);
+}
+
+.scalp-option.selected {
+  background-color: #FFE6EB;
+  border-color: #FF8BA7;
+  transform: scale(1.05);
+  box-shadow: 0 4rpx 10rpx rgba(255, 139, 167, 0.3);
+}
+
+.option-icon {
+  font-size: 60rpx;
+  margin-bottom: 10rpx;
+}
+
+.option-text {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 输入框样式 */
+.form-input {
+  background-color: #FFF;
+  border: 2rpx solid #FFD6E0;
+  border-radius: 15rpx;
+  padding: 15rpx 20rpx;
+  font-size: 28rpx;
+  color: #666;
+  width: 100%;
+  box-shadow: 0 2rpx 5rpx rgba(255, 179, 193, 0.2);
+}
+
+.form-textarea {
+  background-color: #FFF;
+  border: 2rpx solid #FFD6E0;
+  border-radius: 15rpx;
+  padding: 15rpx 20rpx;
+  font-size: 28rpx;
+  color: #666;
+  width: 100%;
+  height: 150rpx;
+  box-sizing: border-box;
+  box-shadow: 0 2rpx 5rpx rgba(255, 179, 193, 0.2);
+}
+
+/* 洗发水用量 */
+.shampoo-usage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+slider {
+  width: 100%;
+  margin: 20rpx 0;
+}
+
+.usage-value {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.shampoo-bottle-small {
+  width: 40rpx;
+  height: 60rpx;
+  background-color: #FFB3C1;
+  border-radius: 10rpx 10rpx 20rpx 20rpx;
+  position: relative;
+  margin-right: 10rpx;
+  transition: transform 0.3s ease;
+}
+
+.bottle-face-small {
+  position: absolute;
+  width: 24rpx;
+  height: 16rpx;
+  left: 50%;
+  top: 10rpx;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12rpx 12rpx 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottle-face-small:before, .bottle-face-small:after {
+  content: "";
+  position: absolute;
+  width: 4rpx;
+  height: 4rpx;
+  background-color: #333;
+  border-radius: 50%;
+  top: 6rpx;
+}
+
+.bottle-face-small:before {
+  left: 6rpx;
+}
+
+.bottle-face-small:after {
+  right: 6rpx;
+}
+
+/* 提交按钮 */
+.submit-btn {
+  width: 80%;
+  height: 90rpx;
+  background-color: #FFB3C1;
+  border-radius: 45rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin: 40rpx 0;
+  box-shadow: 0 6rpx 12rpx rgba(255, 179, 193, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 3rpx 6rpx rgba(255, 179, 193, 0.4);
+}
+
+.submit-btn:before {
+  content: "";
+  position: absolute;
+  top: -10rpx;
+  left: -10rpx;
+  right: -10rpx;
+  bottom: -10rpx;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+  transform: rotate(45deg) translateX(-100%);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: rotate(45deg) translateX(-100%); }
+  20% { transform: rotate(45deg) translateX(100%); }
+  100% { transform: rotate(45deg) translateX(100%); }
+}
+
+/* 提交成功时飘落花瓣动画 */
+.petals-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.petal {
+  position: absolute;
+  top: -50rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background-color: #FFB3C1;
+  border-radius: 30rpx 0 30rpx 0;
+  opacity: 0.7;
+  animation: falling 4s linear infinite;
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* 动画效果 */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10rpx); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.option-icon {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+/* 页面切换时浴缸水波纹转场效果 */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #A8D8EA 0%, transparent 70%);
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.page-transition.active {
+  animation: ripple 0.8s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}

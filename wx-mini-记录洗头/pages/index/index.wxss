@@ -1,0 +1,355 @@
+/* index.wxss */
+
+/* 容器样式 */
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* 水彩云朵背景 */
+.cloud-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#FFF9FB 20%, transparent 20%),
+                    radial-gradient(#FFF9FB 20%, transparent 20%);
+  background-position: 0 0, 30px 30px;
+  background-size: 60px 60px;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* 月份导航 */
+.month-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  margin-bottom: 20rpx;
+}
+
+.nav-btn {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(255, 179, 193, 0.3);
+}
+
+.month-title {
+  font-family: "rounded-mplus-1c-bold", sans-serif;
+  font-size: 36rpx;
+  color: #FF8BA7;
+  font-weight: bold;
+}
+
+/* 状态显示栏 - 蝴蝶结缎带样式 */
+.status-ribbon {
+  width: 90%;
+  height: 80rpx;
+  display: flex;
+  margin: 20rpx 0 30rpx;
+  position: relative;
+}
+
+.ribbon-left, .ribbon-right {
+  width: 40rpx;
+  height: 100%;
+  background-color: #FFB3C1;
+  position: relative;
+}
+
+.ribbon-left:before, .ribbon-right:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.ribbon-left:before {
+  left: -20rpx;
+  border-width: 40rpx 20rpx 40rpx 0;
+  border-color: transparent #FFB3C1 transparent transparent;
+}
+
+.ribbon-right:before {
+  right: -20rpx;
+  border-width: 40rpx 0 40rpx 20rpx;
+  border-color: transparent transparent transparent #FFB3C1;
+}
+
+.ribbon-center {
+  flex: 1;
+  background-color: #FFB3C1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-text {
+  color: white;
+  font-size: 28rpx;
+  font-family: "Kosugi Maru", sans-serif;
+}
+
+.count {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin: 0 10rpx;
+}
+
+/* 日历主体 */
+.calendar {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 4px 10px rgba(255, 179, 193, 0.2);
+  margin-bottom: 30rpx;
+}
+
+/* 星期标题行 */
+.weekday-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 0;
+  border-bottom: 2rpx dashed #FFD6E0;
+}
+
+.weekday {
+  width: 14.28%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #FF8BA7;
+  font-weight: bold;
+}
+
+/* 日期格子 */
+.days-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10rpx 0;
+}
+
+.day-cell {
+  width: 14.28%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 5rpx 0;
+  transition: all 0.3s ease;
+}
+
+.day-number {
+  font-size: 28rpx;
+  color: #666;
+  z-index: 1;
+}
+
+/* 非当月日期 */
+.other-month .day-number {
+  color: #CCCCCC;
+}
+
+/* 今天日期 */
+.today {
+  background-color: rgba(255, 179, 193, 0.2);
+  border-radius: 50%;
+}
+
+.today .day-number {
+  color: #FF8BA7;
+  font-weight: bold;
+}
+
+/* 有记录的日期 - 猫咪爪印特效 */
+.has-record {
+  position: relative;
+}
+
+.has-record .paw-print {
+  position: absolute;
+  bottom: 5rpx;
+  right: 36rpx;
+  width: 30rpx;
+  height: 30rpx;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.has-record .paw-print::before,
+.has-record .paw-print::after {
+  content: '';
+  position: absolute;
+  background: #FFB3C1;
+  border-radius: 50%;
+}
+
+.has-record .paw-print::before {
+  width: 10rpx;
+  height: 10rpx;
+  top: 10rpx;
+  left: 10rpx;
+}
+
+.has-record .paw-print::after {
+  width: 30rpx;
+  height: 30rpx;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 6rpx, #FFB3C1 6rpx, #FFB3C1 8rpx, transparent 8rpx),
+              radial-gradient(circle at 20% 50%, transparent 4rpx, #FFB3C1 4rpx, #FFB3C1 6rpx, transparent 6rpx),
+              radial-gradient(circle at 80% 50%, transparent 4rpx, #FFB3C1 4rpx, #FFB3C1 6rpx, transparent 6rpx),
+              radial-gradient(circle at 50% 20%, transparent 4rpx, #FFB3C1 4rpx, #FFB3C1 6rpx, transparent 6rpx),
+              radial-gradient(circle at 50% 80%, transparent 4rpx, #FFB3C1 4rpx, #FFB3C1 6rpx, transparent 6rpx);
+  opacity: 0.9;
+}
+
+/* 记录按钮：长方形按钮 */
+.record-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.record-btn {
+  width: 80%;
+  height: 90rpx;
+  background-color: #FFB3C1;
+  border-radius: 45rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6rpx 12rpx rgba(255, 179, 193, 0.4);
+  transition: all 0.3s ease;
+}
+
+.record-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 6rpx rgba(255, 179, 193, 0.3);
+}
+
+.btn-text {
+  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+/* 洗发水瓶动画 */
+.bottle-animation {
+  position: relative;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.shampoo-bottle {
+  width: 30rpx;
+  height: 40rpx;
+  background-color: #A8D8EA;
+  border-radius: 5rpx 5rpx 15rpx 15rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.bottle-face {
+  position: absolute;
+  width: 20rpx;
+  height: 12rpx;
+  left: 50%;
+  top: 8rpx;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10rpx 10rpx 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottle-face:before, .bottle-face:after {
+  content: "";
+  position: absolute;
+  width: 3rpx;
+  height: 3rpx;
+  background-color: #333;
+  border-radius: 50%;
+  top: 4rpx;
+}
+
+.bottle-face:before {
+  left: 5rpx;
+}
+
+.bottle-face:after {
+  right: 5rpx;
+}
+
+.bottle-bubble {
+  position: absolute;
+  width: 10rpx;
+  height: 10rpx;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: bubble-float 2s infinite ease-in-out;
+}
+
+.bubble1 {
+  top: -15rpx;
+  left: 0;
+  animation-delay: 0s;
+}
+
+.bubble2 {
+  top: -20rpx;
+  left: 15rpx;
+  width: 8rpx;
+  height: 8rpx;
+  animation-delay: 0.5s;
+}
+
+.bubble3 {
+  top: -10rpx;
+  left: 25rpx;
+  width: 6rpx;
+  height: 6rpx;
+  animation-delay: 1s;
+}
+
+@keyframes bubble-float {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  50% { transform: translateY(-15rpx) scale(1.2); opacity: 0.7; }
+  100% { transform: translateY(-30rpx) scale(0.8); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10rpx);
+  }
+}

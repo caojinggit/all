@@ -1,0 +1,88 @@
+<!-- record.wxml -->
+<view class="container">
+  <!-- 水彩云朵背景 -->
+  <view class="cloud-bg"></view>
+  
+  <!-- 页面标题 -->
+  <view class="page-title">
+    <view class="title-text">记录洗发</view>
+    <view class="title-decoration"></view>
+  </view>
+  
+  <!-- 记录表单 -->
+  <view class="record-form">
+    <!-- 日期选择 -->
+    <view class="form-item">
+      <view class="form-label">洗发日期</view>
+      <picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-31" bindchange="bindDateChange">
+        <view class="picker-wrapper">
+          <view class="picker-value">{{date}}</view>
+          <view class="picker-icon">📅</view>
+        </view>
+      </picker>
+    </view>
+    
+    <!-- 时间选择器：旋转式表盘带猫咪指针 -->
+    <view class="form-item">
+      <view class="form-label">洗发时间</view>
+      <view class="clock-picker">
+        <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+          <view class="picker-wrapper">
+            <view class="picker-value">{{time}}</view>
+            <view class="clock-face">
+              <view class="clock-center"></view>
+              <view class="clock-hand" style="transform: rotate({{clockHandRotation}}deg)">
+                <view class="cat-pointer">🐱</view>
+              </view>
+            </view>
+          </view>
+        </picker>
+      </view>
+    </view>
+    
+    <!-- 头皮状态选择：Q版表情包选项 -->
+    <view class="form-item">
+      <view class="form-label">头皮状态</view>
+      <view class="scalp-options">
+        <view class="scalp-option {{scalpCondition === '干爽' ? 'selected' : ''}}" 
+              bindtap="selectScalpCondition" 
+              data-condition="干爽">
+          <view class="option-icon">😊</view>
+          <view class="option-text">干爽</view>
+        </view>
+        <view class="scalp-option {{scalpCondition === '油腻' ? 'selected' : ''}}" 
+              bindtap="selectScalpCondition" 
+              data-condition="油腻">
+          <view class="option-icon">😓</view>
+          <view class="option-text">油腻</view>
+        </view>
+        <view class="scalp-option {{scalpCondition === '头屑' ? 'selected' : ''}}" 
+              bindtap="selectScalpCondition" 
+              data-condition="头屑">
+          <view class="option-icon">❄️</view>
+          <view class="option-text">头屑</view>
+        </view>
+      </view>
+    </view>
+    
+ 
+    
+    <!-- 备注信息 -->
+    <view class="form-item">
+      <view class="form-label">备注</view>
+      <textarea class="form-textarea" placeholder="记录一下今天的护发心得吧~" value="{{notes}}" bindinput="inputNotes"></textarea>
+    </view>
+    
+    
+  </view>
+  
+  <!-- 提交按钮 -->
+  <view class="submit-btn" bindtap="submitRecord">
+    <text>保存记录</text>
+  </view>
+  
+  <!-- 提交成功时飘落花瓣动画 -->
+  <view class="petals-container" wx:if="{{showPetals}}">
+    <view class="petal" wx:for="{{12}}" wx:key="index" style="animation-delay: {{index * 0.2}}s; left: {{index * 8}}%;"></view>
+  </view>
+</view>

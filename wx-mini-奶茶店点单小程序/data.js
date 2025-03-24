@@ -6,7 +6,7 @@ const products = [
     name: '芒果冰沙',
     price: 20,
     category: '冰沙系列',
-    image: '/images/smoothie.svg',
+    image: 'https://images.pexels.com/photos/4974543/pexels-photo-4974543.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '新鲜芒果制作的绵密冰沙',
     isHot: true,
     stock: 25
@@ -17,7 +17,7 @@ const products = [
     name: '草莓芝士',
     price: 28,
     category: '季节限定',
-    image: '/images/seasonal.svg',
+    image: 'https://images.pexels.com/photos/8329677/pexels-photo-8329677.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '当季新鲜草莓搭配芝士奶盖',
     stock: 20
   },
@@ -27,7 +27,7 @@ const products = [
     name: '燕麦拿铁低卡版',
     price: 22,
     category: '低卡专区',
-    image: '/images/low-calorie.svg',
+    image: 'https://images.pexels.com/photos/6413700/pexels-photo-6413700.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '使用低脂燕麦奶制作的拿铁',
     isHot: true,
     stock: 30
@@ -37,7 +37,7 @@ const products = [
     name: '芝士奶盖四季春',
     price: 18,
     category: '经典奶茶',
-    image: '/images/bubble-tea.svg',
+    image: 'https://images.pexels.com/photos/8134134/pexels-photo-8134134.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '醇香芝士奶盖搭配清新四季春茶底'
   },
   {
@@ -45,7 +45,7 @@ const products = [
     name: '珍珠奶茶',
     price: 15,
     category: '经典奶茶',
-    image: '/images/bubble-tea.svg',
+    image: 'https://images.pexels.com/photos/19319706/pexels-photo-19319706.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '经典台式奶茶配Q弹黑糖珍珠'
   },
   {
@@ -53,7 +53,7 @@ const products = [
     name: '芒果奶盖',
     price: 16,
     category: '经典奶茶',
-    image: '/images/bubble-tea.svg',
+    image: 'https://images.pexels.com/photos/6413727/pexels-photo-6413727.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '新鲜芒果制作的绵密奶盖',
     isHot: true,
     stock: 45
@@ -63,7 +63,7 @@ const products = [
     name: '蜜桃乌龙茶',
     price: 16,
     category: '果茶',
-    image: '/images/fruit-tea.svg',
+    image: 'https://images.pexels.com/photos/4974543/pexels-photo-4974543.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '新鲜蜜桃果肉搭配炭焙乌龙茶'
   },
   {
@@ -71,7 +71,7 @@ const products = [
     name: '芒果冰沙',
     price: 20,
     category: '果茶',
-    image: '/images/fruit-tea.svg',
+    image: 'https://images.pexels.com/photos/8329677/pexels-photo-8329677.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '当季新鲜芒果制作的绵密冰沙'
   },
   {
@@ -79,7 +79,7 @@ const products = [
     name: '香草拿铁',
     price: 22,
     category: '咖啡',
-    image: '/images/coffee.svg',
+    image: 'https://images.pexels.com/photos/6413700/pexels-photo-6413700.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '意式浓缩咖啡搭配香草风味牛奶'
   },
   {
@@ -87,7 +87,7 @@ const products = [
     name: '黑糖珍珠奶茶',
     price: 19,
     category: '经典奶茶',
-    image: '/images/bubble-tea.svg',
+    image: 'https://images.pexels.com/photos/8134134/pexels-photo-8134134.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '古法熬制黑糖珍珠',
     isHot: true,
     stock: 38
@@ -97,7 +97,7 @@ const products = [
     name: '抹茶拿铁',
     price: 22,
     category: '经典奶茶',
-    image: '/images/bubble-tea.svg',
+    image: 'https://images.pexels.com/photos/6413727/pexels-photo-6413727.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '日本宇治抹茶配方',
     isHot: false,
     stock: 27
@@ -107,7 +107,7 @@ const products = [
     name: '荔枝玫瑰',
     price: 24,
     category: '果茶',
-    image: '/images/fruit-tea.svg',
+    image: 'https://images.pexels.com/photos/6413727/pexels-photo-6413727.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '荔枝果肉搭配重瓣玫瑰',
     isHot: true,
     stock: 15
@@ -117,7 +117,7 @@ const products = [
     name: '蓝莓爆柠',
     price: 21,
     category: '果茶',
-    image: '/images/fruit-tea.svg',
+    image: 'https://images.pexels.com/photos/19319706/pexels-photo-19319706.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '新鲜蓝莓与香水柠檬组合',
     isHot: true,
     stock: 22
@@ -127,7 +127,7 @@ const products = [
     name: '椰香美式',
     price: 18,
     category: '咖啡',
-    image: '/images/coffee.svg',
+    image: 'https://images.pexels.com/photos/8134134/pexels-photo-8134134.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '椰子水搭配浓缩咖啡',
     isHot: false,
     stock: 30
@@ -137,7 +137,7 @@ const products = [
     name: '焦糖玛奇朵',
     price: 25,
     category: '咖啡',
-    image: '/images/coffee.svg',
+    image: 'https://images.pexels.com/photos/6413700/pexels-photo-6413700.jpeg?auto=compress&cs=tinysrgb&w=600',
     desc: '经典意式咖啡饮品',
     isHot: true,
     stock: 18
