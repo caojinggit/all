@@ -1,0 +1,460 @@
+/* pages/index/index.wxss */
+
+/* 全局容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #e6f7ff, #ffffff);
+}
+
+/* 植物展示区域 */
+.plant-container {
+  width: 100%;
+  height: 500rpx;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+
+/* 花盆样式 */
+.plant-stage-0, .plant-stage-1, .plant-stage-2, .plant-stage-3, .plant-stage-4 {
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+/* 花盆 - 基础样式 */
+.soil {
+  position: relative;
+  width: 200rpx;
+  height: 80rpx;
+  background-color: #8b5a2b;
+  border-radius: 0 0 100rpx 100rpx;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, 0.2);
+}
+
+.soil::before {
+  content: '';
+  position: absolute;
+  top: -40rpx;
+  left: -30rpx;
+  width: 260rpx;
+  height: 60rpx;
+  background-color: #d35400;
+  border-radius: 20rpx 20rpx 0 0;
+  z-index: 0;
+}
+
+/* 植物茎 */
+.plant-stem {
+  position: absolute;
+  bottom: 70rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8rpx;
+  height: 60rpx;
+  background: linear-gradient(to top, #2ecc71, #7bed9f);
+  z-index: 2;
+  box-shadow: 0 0 5rpx rgba(46, 204, 113, 0.3);
+}
+
+/* 植物叶子 - 基础 */
+.plant-leaf {
+  position: absolute;
+  width: 40rpx;
+  height: 20rpx;
+  background: linear-gradient(to right, #27ae60, #2ecc71);
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 5rpx rgba(46, 204, 113, 0.2);
+  animation: leafSway 5s ease-in-out infinite alternate;
+}
+
+.plant-leaf-left {
+  bottom: 100rpx;
+  left: 70rpx;
+  transform: rotate(-30deg);
+}
+
+.plant-leaf-right {
+  bottom: 100rpx;
+  right: 70rpx;
+  transform: rotate(30deg);
+}
+
+/* 阶段1：多出的叶子 */
+.plant-leaf-left-2 {
+  bottom: 120rpx;
+  left: 60rpx;
+  transform: rotate(-45deg);
+  width: 50rpx;
+  height: 25rpx;
+}
+
+.plant-leaf-right-2 {
+  bottom: 120rpx;
+  right: 60rpx;
+  transform: rotate(45deg);
+  width: 50rpx;
+  height: 25rpx;
+}
+
+/* 阶段2：分支 */
+.plant-branch {
+  position: absolute;
+  width: 8rpx;
+  height: 40rpx;
+  background-color: #27ae60;
+  z-index: 2;
+}
+
+.plant-branch-left {
+  bottom: 110rpx;
+  left: 85rpx;
+  transform: rotate(-30deg);
+}
+
+.plant-branch-right {
+  bottom: 110rpx;
+  right: 85rpx;
+  transform: rotate(30deg);
+}
+
+/* 阶段3：花苞 */
+.plant-bud {
+  position: absolute;
+  width: 25rpx;
+  height: 25rpx;
+  background: radial-gradient(circle, #ffeaa7, #fdcb6e);
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 0 10rpx rgba(253, 203, 110, 0.5);
+  animation: budPulse 3s infinite alternate;
+}
+
+.plant-bud::before {
+  content: '';
+  position: absolute;
+  top: -3rpx;
+  left: -3rpx;
+  right: -3rpx;
+  bottom: -3rpx;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.plant-bud-left {
+  bottom: 140rpx;
+  left: 70rpx;
+}
+
+.plant-bud-right {
+  bottom: 140rpx;
+  right: 70rpx;
+}
+
+/* 阶段4：花朵 */
+.plant-flower {
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  background: radial-gradient(circle, #ff66b2, #ff3399);
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 0 25rpx rgba(255, 102, 178, 0.8), 0 0 35rpx rgba(255, 102, 178, 0.5);
+  animation: flowerGlow 3s infinite alternate, flowerPulse 2s ease-in-out infinite;
+}
+
+.plant-flower::before {
+  content: '';
+  position: absolute;
+  top: -10rpx;
+  left: -10rpx;
+  right: -10rpx;
+  bottom: -10rpx;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.5;
+  animation: flowerAura 4s infinite alternate, glowEffect 1.5s infinite alternate;
+}
+
+/* 新增旋转光圈效果 */
+.plant-flower::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100rpx; /* 光圈的大小 */
+  height: 100rpx; /* 光圈的大小 */
+  background: rgba(255, 255, 255, 0.3); /* 光圈颜色 */
+  border-radius: 50%;
+  z-index: -2;
+  transform: translate(-50%, -50%); /* 使光圈居中 */
+  animation: rotateGlow 2s linear infinite; /* 旋转动画 */
+}
+
+@keyframes rotateGlow {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.plant-flower-left {
+  bottom: 160rpx;
+  left: 60rpx;
+  animation: flowerSway 4s ease-in-out infinite alternate;
+}
+
+.plant-flower-right {
+  bottom: 160rpx;
+  right: 60rpx;
+  animation: flowerSway 4s ease-in-out infinite alternate-reverse;
+}
+
+.plant-flower-center {
+  bottom: 190rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70rpx;
+  height: 70rpx;
+  background: radial-gradient(circle, #ffccff, #ff66b2);
+  animation: flowerPulse 2s ease-in-out infinite;
+}
+
+/* 虫害 */
+.bug {
+  position: absolute;
+  width: 15rpx;
+  height: 15rpx;
+  background-color: #7f8c8d;
+  border-radius: 50%;
+  z-index: 4;
+}
+
+.bug-1 {
+  bottom: 110rpx;
+  left: 100rpx;
+  animation: bugMove 3s infinite alternate;
+}
+
+.bug-2 {
+  bottom: 130rpx;
+  right: 90rpx;
+  animation: bugMove 4s infinite alternate-reverse;
+}
+
+.bug-3 {
+  bottom: 90rpx;
+  left: 80rpx;
+  animation: bugMove 3.5s infinite alternate;
+}
+
+@keyframes bugMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(10rpx, 10rpx); }
+}
+
+@keyframes flowerGlow {
+  0% { box-shadow: 0 0 15rpx rgba(255, 102, 178, 0.7); }
+  50% { box-shadow: 0 0 25rpx rgba(255, 102, 178, 0.9); }
+  100% { box-shadow: 0 0 15rpx rgba(255, 102, 178, 0.7); }
+}
+
+@keyframes flowerSway {
+  0% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(5deg) translateY(-5rpx); }
+  75% { transform: rotate(-5deg) translateY(5rpx); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+
+@keyframes flowerPulse {
+  0% { transform: translateX(-50%) scale(1); filter: hue-rotate(0deg); }
+  50% { transform: translateX(-50%) scale(1.1); filter: hue-rotate(30deg); }
+  100% { transform: translateX(-50%) scale(1); filter: hue-rotate(0deg); }
+}
+
+@keyframes flowerAura {
+  0% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 0.4; }
+}
+
+@keyframes leafSway {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(3deg) scale(1.05); }
+  100% { transform: rotate(-3deg) scale(1); }
+}
+
+@keyframes budPulse {
+  0% { transform: scale(1); box-shadow: 0 0 10rpx rgba(253, 203, 110, 0.5); }
+  50% { transform: scale(1.1); box-shadow: 0 0 15rpx rgba(253, 203, 110, 0.7); }
+  100% { transform: scale(1); box-shadow: 0 0 10rpx rgba(253, 203, 110, 0.5); }
+}
+
+@keyframes sparkle {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.5); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.5; }
+}
+
+/* 花盆大小随阶段变化 */
+.plant-stage-0 .soil {
+  transform: scale(0.6);
+}
+
+.plant-stage-1 .soil {
+  transform: scale(0.65);
+}
+
+.plant-stage-2 .soil {
+  transform: scale(0.7);
+}
+
+.plant-stage-3 .soil {
+  transform: scale(0.75);
+}
+
+.plant-stage-4 .soil {
+  transform: scale(0.8);
+}
+
+/* 植物高度随阶段变化 */
+.plant-stage-0 .plant-stem {
+  height: 60rpx;
+}
+
+.plant-stage-1 .plant-stem {
+  height: 80rpx;
+}
+
+.plant-stage-2 .plant-stem {
+  height: 100rpx;
+}
+
+.plant-stage-3 .plant-stem {
+  height: 120rpx;
+}
+
+.plant-stage-4 .plant-stem {
+  height: 140rpx;
+}
+
+/* 状态面板 */
+.status-panel {
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+
+.status-card {
+  background: white;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-item text:first-child {
+  font-size: 28rpx;
+  color: #666;
+  width: 150rpx;
+}
+
+.status-item progress {
+  flex: 1;
+}
+
+/* 操作按钮 */
+.action-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.action-btn {
+  flex: 1;
+  margin: 0 10rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn:active {
+  transform: scale(0.95);
+}
+
+.water-btn {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: white;
+}
+
+.fertilize-btn {
+  background: linear-gradient(to right, #f6d365, #fda085);
+  color: white;
+}
+
+.bug-btn {
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+  color: white;
+}
+
+.action-btn[disabled] {
+  background: #f0f0f0;
+  color: #bbb;
+}
+
+/* 底部菜单 */
+.bottom-menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu-btn {
+  background: transparent;
+  color: #4CAF50;
+  font-size: 28rpx;
+  border: 2rpx solid #4CAF50;
+  border-radius: 30rpx;
+  padding: 10rpx 30rpx;
+  transition: all 0.3s ease;
+}
+
+.menu-btn:active {
+  background: #4CAF50;
+  color: white;
+}

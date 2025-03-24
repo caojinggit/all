@@ -1,0 +1,92 @@
+<!-- index.wxml -->
+<view class="container">
+  <!-- 植物展示区域 -->
+  <view class="plant-container">
+    <view class="plant-stage-{{plant.stage}}">
+      <!-- 使用CSS绘制植物形态 -->
+      <view class="soil" style="background-color: {{plant.water < 30 ? '#e0c9a6' : '#8b5a2b'}};"></view>
+      <view class="plant-stem"></view>
+      <view class="plant-leaf plant-leaf-left"></view>
+      <view class="plant-leaf plant-leaf-right"></view>
+      <block wx:if="{{plant.stage >= 1}}">
+        <view class="plant-leaf plant-leaf-left-2"></view>
+        <view class="plant-leaf plant-leaf-right-2"></view>
+      </block>
+      <block wx:if="{{plant.stage >= 2}}">
+        <view class="plant-branch plant-branch-left"></view>
+        <view class="plant-branch plant-branch-right"></view>
+      </block>
+      <block wx:if="{{plant.stage >= 3}}">
+        <view class="plant-bud plant-bud-left"></view>
+        <view class="plant-bud plant-bud-right"></view>
+      </block>
+      <block wx:if="{{plant.stage >= 4}}">
+        <view class="plant-flower plant-flower-left"></view>
+        <view class="plant-flower plant-flower-right"></view>
+        <view class="plant-flower plant-flower-center"></view>
+      </block>
+      <!-- 虫害显示 -->
+      <block wx:if="{{plant.bugs > 0}}">
+        <view class="bug bug-1"></view>
+        <block wx:if="{{plant.bugs > 30}}">
+          <view class="bug bug-2"></view>
+        </block>
+        <block wx:if="{{plant.bugs > 60}}">
+          <view class="bug bug-3"></view>
+        </block>
+      </block>
+    </view>
+  </view>
+  
+  <!-- 状态面板 -->
+  <view class="status-panel">
+    <view class="status-card">
+      <view class="card-title">{{plant.name}}</view>
+      <view class="card-content">
+        <view class="status-item">
+          <text>阶段：</text>
+          <text>{{plant.stage + 1}}/5</text>
+        </view>
+        <view class="status-item">
+          <text>健康度：</text>
+          <progress percent="{{plant.health}}" stroke-width="6" color="{{plant.health > 60 ? '#09BB07' : (plant.health > 30 ? '#FFB90F' : '#E64340')}}"/>
+        </view>
+        <view class="status-item">
+          <text>成长进度：</text>
+          <progress percent="{{growthProgress}}" stroke-width="6" color="#1aad19"/>
+        </view>
+        <view class="status-item">
+          <text>水分：</text>
+          <progress percent="{{plant.water}}" stroke-width="6" color="#10AEFF"/>
+        </view>
+        <view class="status-item">
+          <text>肥料：</text>
+          <progress percent="{{plant.fertilizer}}" stroke-width="6" color="#8B4513"/>
+        </view>
+        <view class="status-item" wx:if="{{plant.bugs > 0}}">
+          <text>虫害：</text>
+          <progress percent="{{plant.bugs}}" stroke-width="6" color="#E64340"/>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 操作按钮 -->
+  <view class="action-panel">
+    <button class="action-btn water-btn" bindtap="waterPlant">
+      浇水
+    </button>
+    <button class="action-btn fertilize-btn" bindtap="fertilizePlant">
+      施肥
+    </button>
+    <button class="action-btn bug-btn" bindtap="removeBugs" disabled="{{plant.bugs <= 0}}">
+      除虫
+    </button>
+  </view>
+  
+  <!-- 底部菜单 -->
+  <!-- 删除分享按钮 -->
+  <!-- <view class="bottom-menu">
+    <button class="menu-btn" open-type="share">分享</button>
+  </view> -->
+</view>

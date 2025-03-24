@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "植物养成",
+    "navigationBarBackgroundColor": "#4CAF50",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f8f9fa",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
