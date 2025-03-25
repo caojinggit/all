@@ -1,0 +1,157 @@
+.fish-icon {
+  width: 140px;
+  height: 60px;
+  background: radial-gradient(ellipse at center, #8B4513, #5D4037);
+  border-radius: 70px 70px 20px 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 2px 10px rgba(255,255,255,0.2);
+  position: relative;
+  overflow: visible;
+  transform: rotate(0deg);
+  /* 添加木纹纹理 */
+  background-image: 
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 5px),
+    repeating-linear-gradient(180deg, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 1px, transparent 1px, transparent 5px);
+}
+
+.fish-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 30px;
+  background: rgba(62, 39, 35, 0.7);
+  border-radius: 40px / 15px;
+  transform: translate(-50%, -50%);
+  /* 添加凹槽效果 */
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.7);
+}
+
+.fish-icon::after {
+  content: '';
+  position: absolute;
+  top: -65px;
+  right: 50%;
+  width: 8px;
+  height: 75px;
+  background: linear-gradient(to right, #3E2723, #5D4037, #3E2723);
+  transform: rotate(0deg);
+  transform-origin: bottom center;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+@keyframes fishClick {
+  0% { transform: scale(1); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+  50% { transform: scale(0.95); box-shadow: 0 5px 10px rgba(0,0,0,0.3); }
+  100% { transform: scale(1); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+}
+
+/* 添加木鱼底部 */
+.fish-icon::after::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: #3E2723;
+  border-radius: 0 0 70px 70px / 0 0 20px 20px;
+  transform: translateY(100%);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+/* 添加木鱼表面的纹理线条 */
+.fish-icon::after::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 25px;
+  height: 8px;
+  background: #3E2723;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+}
+
+/* 添加木鱼底部 */
+.fish-icon::before::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: transparent;
+  border: 1px solid rgba(62, 39, 35, 0.5);
+  box-sizing: border-box;
+}
+
+@keyframes stickClick {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.fish-icon:active {
+  animation: fishClick 0.2s ease;
+}
+
+.fish-icon:active::after {
+  animation: stickClick 0.2s ease;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000;
+  perspective: 800px;
+}
+
+.counter {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 120px;
+}
+
+.merit-text {
+  position: absolute;
+  color: #ffcc00;
+  font-size: 20px;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 0 0 5px rgba(255, 204, 0, 0.7);
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100px); opacity: 0; }
+}
+
+.fish {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(15deg);
+}
+
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(255, 204, 0, 0.2);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: ripple 0.6s ease-out forwards;
+}

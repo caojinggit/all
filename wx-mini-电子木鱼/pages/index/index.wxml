@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="counter">功德：{{count}}</view>
+  <view class="fish" bindtap="onTapFish">
+    <view class="fish-icon"></view>
+    <view class="stick" animation="{{stickAnimation}}"></view>
+    <block wx:for="{{meritTexts}}" wx:key="id">
+      <view class="merit-text" style="left: calc(50% + {{item.x}}px); animation: floatUp 1s ease-out forwards;">{{item.text}}</view>
+    </block>
+  </view>
+</view>
